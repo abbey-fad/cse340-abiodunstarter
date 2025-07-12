@@ -244,3 +244,57 @@ footer {
     text-align: left;
   }
 }
+
+/******* Inventory Grid Styles ***************/
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+#inv-display li {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  background-color: #fff;
+  text-align: center;
+}
+
+#inv-display li:hover {
+  transform: scale(1.02);
+}
+
+#inv-display img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.namePrice {
+  padding: 1rem;
+}
+
+.namePrice h2 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.namePrice a {
+  color: #222;
+  text-decoration: none;
+}
+
+.namePrice a:hover {
+  text-decoration: underline;
+}
+
+.namePrice span {
+  font-weight: bold;
+  color: #0a7d2d;
+  font-size: 1.1rem;
+}
