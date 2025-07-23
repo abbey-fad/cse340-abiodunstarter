@@ -1,29 +1,40 @@
-<h1>
-	<%= title %>
-</h1>
+<div class="register-wrapper">
+	<h1>
+		<%= title %>
+	</h1>
+	<%- messages() %>
 
-<%- messages() %> <%-- Flash message support --%>
+		<p>All fields are required.</p>
+		<form id="registerForm" action="/account/register" method="post">
+			<fieldset>
+				<label for="account_firstname">First name:</label>
+				<input type="text" name="account_firstname" id="account_firstname" required>
 
-		<form action="/account/register" method="post" class="form-card">
+				<label for="account_lastname">Last name:</label>
+				<input type="text" name="account_lastname" id="account_lastname" required>
 
-			<label for="firstName">First name</label>
-			<input type="text" id="firstName" name="firstName" required
-				value="<%= typeof firstName !== 'undefined' ? firstName : '' %>">
+				<label for="account_email">Email:</label>
+				<input type="email" name="account_email" id="account_email" required>
 
-			<label for="lastName">Last name</label>
-			<input type="text" id="lastName" name="lastName" required
-				value="<%= typeof lastName !== 'undefined' ? lastName : '' %>">
+				<label for="account_password">Password:</label>
+				<input type="password" name="account_password" id="account_password" required
+					pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
 
-			<label for="email">Email address</label>
-			<input type="email" id="email" name="email" required
-				value="<%= typeof email !== 'undefined' ? email : '' %>">
+				<div class="password-hint">
+					<span>Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1
+						special character.</span>
+				</div>
 
-			<label for="password">Password</label>
-			<input type="password" id="password" name="password" required>
-			<span class="password-hint">
-				Must be at least 12 characters and contain an uppercase letter, a number, and a special character.
-			</span>
-
-			<button type="submit">Register</button>
-
+				<button type="submit">Register</button>
+			</fieldset>
 		</form>
+
+		<button type="button" onclick="togglePassword()">👁️ Show</button>
+</div>
+
+<script>
+	function togglePassword() {
+		const pwd = document.getElementById("account_password");
+		pwd.type = pwd.type === "password" ? "text" : "password";
+	}
+</script>

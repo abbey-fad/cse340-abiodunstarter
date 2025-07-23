@@ -1,16 +1,25 @@
-<h1>
-	<%= title %>
-</h1>
-<%- messages() %>
+<div class="login-wrapper">
+	<h1>
+		<%= title %>
+	</h1>
+	<%- messages() %>
 
-	<form action="/account/login" method="post" class="form-card">
-		<label for="email">Email:</label>
-		<input type="email" id="email" name="email" required>
+		<form action="/account/login" method="post" class="form-card">
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="account_email" required placeholder="Enter your email">
 
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="password" required>
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="account_password" required
+				pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+				placeholder="Enter your password">
 
-		<button type="submit">Login</button>
-	</form>
+			<div class="password-hint">
+				<i>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter, and 1
+					special character.</i>
+			</div>
 
-	<p class="signup-link">No account? <a href="/account/register">Sign-up</a></p>
+			<button type="submit">Login</button>
+		</form>
+
+		<p class="signup-link">No account? <a href="/account/register">Sign-up</a></p>
+</div>

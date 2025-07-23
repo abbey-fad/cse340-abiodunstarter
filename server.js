@@ -17,6 +17,8 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const errorRoute = require("./routes/errorRoute")
 const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities/")
+const bodyParser = require("body-parser")
+
 
 
 
@@ -32,7 +34,10 @@ const utilities = require("./utilities/")
   resave: true,
   saveUninitialized: true,
   name: 'sessionId',
-}))
+ }))
+
+ app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 
 // Express Messages Middleware
