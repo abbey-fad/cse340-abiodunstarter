@@ -4,32 +4,44 @@
 	</h1>
 	<%- messages() %>
 
-		<p>All fields are required.</p>
-		<form id="registerForm" action="/account/register" method="post">
-			<fieldset>
-				<label for="account_firstname">First name:</label>
-				<input type="text" name="account_firstname" id="account_firstname" required>
-
-				<label for="account_lastname">Last name:</label>
-				<input type="text" name="account_lastname" id="account_lastname" required>
-
-				<label for="account_email">Email:</label>
-				<input type="email" name="account_email" id="account_email" required>
-
-				<label for="account_password">Password:</label>
-				<input type="password" name="account_password" id="account_password" required
-					pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
-
-				<div class="password-hint">
-					<span>Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1
-						special character.</span>
-				</div>
-
-				<button type="submit">Register</button>
-			</fieldset>
-		</form>
-
-		<button type="button" onclick="togglePassword()">👁️ Show</button>
+	<% if (errors) { %>
+		<ul class="notice">
+			<% errors.array().forEach(error=> { %>
+				<li>
+					<%= error.msg %>
+				</li>
+				<% }) %>
+		</ul>
+		<% } %>                  
+	<p>All fields are required.</p>
+	<form id="registerForm" action="/account/register" method="post">
+		<fieldset>
+			<label for="account_firstname">First name:</label>
+			<input type="text" name="account_firstname" id="accountFirstname" required
+			    value="<%= locals.account_firstname %>">
+	
+			<label for="account_lastname">Last name:</label>
+			<input type="text" name="account_lastname" id="accountLastname" required
+				value="<%= locals.account_lastname %>">
+	
+			<label for="account_email">Email:</label>
+			<input type="email" name="account_email" id="accountEmail" required
+				value="<%= locals.account_email %>">
+	
+			<label for="account_password">Password:</label>
+			<input type="password" name="account_password" id="account_password" required
+				pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+	
+			<div class="password-hint">
+				<span>Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1
+					special character.</span>
+			</div>
+	
+			<button type="submit">Register</button>
+		</fieldset>
+	</form>
+	
+	<button type="button" onclick="togglePassword()">👁️ Show</button>
 </div>
 
 <script>
