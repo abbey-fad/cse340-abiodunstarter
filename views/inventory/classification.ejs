@@ -10,7 +10,11 @@
 <!-- ============================
      Flash or Message Area
 ============================= -->
-<% messages() %>
+<% if (notice && notice.length> 0) { %>
+	<div class="flash-message">
+		<%= notice[0] %>
+	</div>
+	<% } %>
 
 	<!-- ============================
      Inventory Grid Area
