@@ -2,29 +2,34 @@
 	<h1>Welcome to CSE Motors!</h1>
 	<div class="car-highlight">
 
-	  <%- messages() %>
-	  <img src="/images/vehicles/delorean.jpg" alt="Silver DeLorean">
-	  <div class="car-info">
-		<h2>DMC DeLorean</h2>
-		<ul>
-		  <li>3 Cup holders</li>
-		  <li>Superman doors</li>
-		  <li>Fuzzy dice!</li>
-		</ul>
-		<a class="button" href="#">Own Today</a>
-	  </div>
+		<% if (notice && notice.length> 0) { %>
+			<div class="flash-message">
+				<%= notice[0] %>
+			</div>
+			<% } %>
+
+	    <img src="/images/vehicles/delorean.jpg" alt="Silver DeLorean">
+	    <div class="car-info">
+		    <h2>DMC DeLorean</h2>
+		    <ul>
+		        <li>3 Cup holders</li>
+		        <li>Superman doors</li>
+		        <li>Fuzzy dice!</li>
+		    </ul>
+		    <a class="button" href="#">Own Today</a>
+	    </div>
 	</div>
 </section>
   
 <section class="columns">
 	<div class="column reviews">
-	  <h2>DMC Delorean Reviews</h2>
-	  <ul>
-		<li>"So fast it's almost like traveling in time." (4/5)</li>
-		<li>"Coolest ride on the road." (4/5)</li>
-		<li>"I'm feeling Marty McFly!" (5/5)</li>
-		<li>"The most futuristic ride of our day." (4.5/5)</li>
-	  </ul>
+	    <h2>DMC Delorean Reviews</h2>
+	    <ul>
+		    <li>"So fast it's almost like traveling in time." (4/5)</li>
+		    <li>"Coolest ride on the road." (4/5)</li>
+		    <li>"I'm feeling Marty McFly!" (5/5)</li>
+		    <li>"The most futuristic ride of our day." (4.5/5)</li>
+	    </ul>
 	</div>
   
 	<div class="column upgrades">
