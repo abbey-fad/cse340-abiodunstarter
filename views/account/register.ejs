@@ -2,7 +2,12 @@
 	<h1>
 		<%= title %>
 	</h1>
-	<%- messages() %>
+
+	<% if (notice && notice.length> 0) { %>
+		<div class="flash-message">
+			<%= notice[0] %>
+		</div>
+		<% } %>
 
 	<% if (errors) { %>
 		<ul class="notice">

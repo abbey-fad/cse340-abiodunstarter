@@ -1,0 +1,31 @@
+<div class="add-classification-wrapper">
+	<h1>
+		<%= title %>
+	</h1>
+
+			<!-- Server-side validation errors -->
+			<% if (errors && errors.array) { %>
+				<ul class="notice">
+					<% errors.array().forEach(error=> { %>
+						<li>
+							<%= error.msg %>
+						</li>
+						<% }) %>
+				</ul>
+				<% } %>
+
+					<p>FIELD IS REQUIRED.</p>
+
+					<form action="/inv/add-classification" method="post">
+						<label for="classification_name">Classification Name</label>
+						<p class="input-instruction">
+							NAME MUST BE ALPHABETIC CHARACTERS ONLY, NO SPACES OR SPECIAL CHARACTERS
+						</p>
+						<input type="text" id="classification_name" name="classification_name" pattern="^[A-Za-z]+$"
+							required title="Only letters allowed. No spaces or special characters."
+							placeholder="e.g. SUV"
+							value="<%= typeof classification_name !== 'undefined' ? classification_name : '' %>" />
+
+						<button type="submit">Add Classification</button>
+					</form>
+</div>

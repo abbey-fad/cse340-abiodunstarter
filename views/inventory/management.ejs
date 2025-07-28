@@ -1,0 +1,18 @@
+<div class="management-wrapper">
+	<h1>
+		<%= title %>
+	</h1>
+
+	<!-- Flash message display -->
+	<% if (notice && notice.length> 0) { %>
+		<div class="flash-message">
+			<%= notice %>
+		</div>
+		<% } %>
+        
+		<p>Use the options below to manage the inventory system.</p>
+		<ul class="management-links">
+			<li><a href="/inv/add-classification">Add New Classification</a></li>
+			<li><a href="/inv/add-inventory">Add New Vehicle</a></li>
+		</ul>
+</div>

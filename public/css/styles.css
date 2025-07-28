@@ -72,7 +72,7 @@ nav ul li a:hover {
   text-align: center;
 }
 
-.hero h1{
+.hero h1 {
   text-align: left;
 }
 
@@ -172,7 +172,7 @@ nav ul li a:hover {
   margin-bottom: 1rem;
 }
 
-.upgrades h2{
+.upgrades h2 {
   text-align: left;
   font-size: 1.25rem;
   font-weight: bold;
@@ -227,7 +227,7 @@ footer p a {
   .car-highlight {
     align-items: flex-start;
   }
-  
+
   .car-info {
     left: 10px;
     top: 10px;
@@ -244,7 +244,7 @@ footer p a {
   .reviews {
     order: 2;
   }
-  
+
   .upgrades {
     order: 1;
   }
@@ -565,4 +565,136 @@ button[type="button"] {
   cursor: pointer;
   border: none;
   background-color: transparent;
+}
+
+.management-wrapper {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  background-color: #f8f8f8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.management-wrapper h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.management-links {
+  list-style: none;
+  padding: 0;
+}
+
+.management-links li {
+  margin: 1rem 0;
+}
+
+.management-links a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #004aad;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.management-links a:hover {
+  background-color: #002f70;
+}
+
+/* Wrapper */
+.add-classification-wrapper,
+.add-inventory-wrapper {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #003366;
+  margin-bottom: 1rem;
+}
+
+p.input-instruction,
+p.notice,
+p.flash-message {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+/* Flash / Success Message */
+.flash-message {
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  background-color: #d1e7dd;
+  border-left: 5px solid #0f5132;
+  color: #0f5132;
+  border-radius: 4px;
+}
+
+/* Error Notices */
+.notice {
+  background: #fdd;
+  color: #900;
+  padding: 1rem;
+  list-style-type: disc;
+  margin: 0.5rem 0 1rem 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+input,
+select,
+textarea {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input:invalid {
+  border-color: #dc3545;
+}
+
+button[type="submit"] {
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: #003366;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #00509e;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+
+  .add-classification-wrapper,
+  .add-inventory-wrapper {
+    margin: 1rem;
+    padding: 1rem;
+  }
 }
