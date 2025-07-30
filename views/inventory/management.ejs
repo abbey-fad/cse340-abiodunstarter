@@ -6,13 +6,28 @@
 	<!-- Flash message display -->
 	<% if (notice && notice.length> 0) { %>
 		<div class="flash-message">
-			<%= notice %>
+			<%= notice[0] %>
 		</div>
 		<% } %>
-        
-		<p>Use the options below to manage the inventory system.</p>
-		<ul class="management-links">
-			<li><a href="/inv/add-classification">Add New Classification</a></li>
-			<li><a href="/inv/add-inventory">Add New Vehicle</a></li>
-		</ul>
+
+			<p>Use the options below to manage the inventory system.</p>
+
+			<ul class="management-links">
+				<li><a href="/inv/add-classification">Add New Classification</a></li>
+				<li><a href="/inv/add-inventory">Add New Vehicle</a></li>
+			</ul>
+
+			<h2>Manage Inventory</h2>
+			<p>Select a classification to see those inventory items.</p>
+
+			<!-- Dropdown injected by controller -->
+			<%- classificationSelect %>
+
+				<!-- Table will be built by JS -->
+				<table id="inventoryDisplay"></table>
+
+				<noscript>JavaScript must be enabled to use this page.</noscript>
 </div>
+
+<!-- Load inventory JS -->
+<script src="../../js/inventory.js"></script>

@@ -15,6 +15,8 @@ const flash = require("connect-flash")
 const env = require("dotenv").config()
 const pool = require("./database/")
 const app = express()
+const cookieParser = require("cookie-parser")
+
 
 // Route files
 const static = require("./routes/static")
@@ -57,19 +59,27 @@ app.use(express.static("public"))
 // Flash messaging
 app.use(flash())
 
-// Setup express-messages for EJS templates
+//Login activity
+app.use(cookieParser())
+//Login Process activity
+app.use(utilities.checkJWTToken)
+
+//Setup express-messages for EJS templates
 //const messages = require("express-messages")
 //app.use((req, res, next) => {
- // res.locals.messages = messages(req, res)
+ //res.locals.messages = messages(req, res)
   //next()
 //})
 
 // Make flash messages and user info available in all views
 app.use(async (req, res, next) => {
   res.locals.notice = req.flash("notice")
+  console.log("Flash message:", res.locals.notice)
   res.locals.nav = await utilities.getNav()
   next()
 })
+
+
 
 /* ***********************
  * View Engine and Layouts
@@ -119,6 +129,9 @@ app.use(async (err, req, res, next) => {
     nav,
   })
 })
+
+app.use(cookieParser())
+
 
 /* ***********************
  * Server Initialization
