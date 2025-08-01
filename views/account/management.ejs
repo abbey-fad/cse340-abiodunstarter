@@ -1,17 +1,44 @@
 <div class="account-management">
   <h1>Account Management</h1>
 
-  <% if (notice && notice.length > 0) { %>
-    <div class="flash-message"><%= notice %></div>
-  <% } %>
+  <% if (notice && notice.length> 0) { %>
+    <div class="flash-message">
+      <%= notice %>
+    </div>
+    <% } %>
 
-  <% if (errors && errors.length > 0) { %>
-    <ul class="error-list">
-      <% errors.forEach(error => { %>
-        <li><%= error.msg %></li>
-      <% }) %>
-    </ul>
-  <% } %>
+      <% if (errors && errors.length> 0) { %>
+        <ul class="error-list">
+          <% errors.forEach(error=> { %>
+            <li>
+              <%= error.msg %>
+            </li>
+            <% }) %>
+        </ul>
+        <% } %>
 
-  <p>You're logged in.</p>
+          <% if (accountData) { %>
+            <% if (accountData.account_type==="Client" ) { %>
+              <!-- Client greeting -->
+              <h2>Welcome, <%= accountData.account_firstname %>
+              </h2>
+              <p>
+                <a href="/account/update/<%= accountData.account_id %>">Update Account Information</a>
+              </p>
+
+              <% } else if ( accountData.account_type==="Employee" || accountData.account_type==="Admin" ) { %>
+                <!-- Employee/Admin greeting -->
+                <h2>Welcome, <%= accountData.account_firstname %>
+                </h2>
+                <p>
+                  <a href="/account/update/<%= accountData.account_id %>">Update Account Information</a>
+                </p>
+                <h3>Inventory Management</h3>
+                <p>
+                  <a href="/inv/">Go to Inventory Management</a>
+                </p>
+                <% } %>
+                  <% } %>
+
+                    <p>You're logged in.</p>
 </div>

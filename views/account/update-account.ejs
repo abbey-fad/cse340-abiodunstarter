@@ -1,0 +1,65 @@
+<main class="form-container">
+	<h1>
+		<%= title %>
+	</h1>
+
+	<!-- Flash message -->
+	<% if (notice && notice.length> 0) { %>
+		<div class="flash-message">
+			<%= notice %>
+		</div>
+		<% } %>
+
+			<!-- Validation errors -->
+			<% if (errors && errors.length> 0) { %>
+				<ul class="error-list" role="alert" aria-live="assertive">
+					<% errors.forEach(error=> { %>
+						<li>
+							<%= error.msg %>
+						</li>
+						<% }) %>
+				</ul>
+			<% } %>
+
+				<!-- ===== Update Account Info Form ===== -->
+				<section class="form-section">
+					<h2>Update Account Information</h2>
+					<form action="/account/update" method="post" class="form-group" novalidate>
+						<label for="first_name">First Name:</label>
+						<input type="text" id="first_name" name="first_name" required
+							value="<%= accountData ? accountData.account_firstname : '' %>">
+					
+						<label for="last_name">Last Name:</label>
+						<input type="text" id="last_name" name="last_name" required
+							value="<%= accountData ? accountData.account_lastname : '' %>">
+					
+						<label for="email">Email:</label>
+						<input type="email" id="email" name="email" required value="<%= accountData ? accountData.account_email : '' %>">
+					
+						<input type="hidden" name="account_id" value="<%= accountData ? accountData.account_id : '' %>">
+					
+						<button type="submit">Update Info</button>
+					</form>
+				</section>
+
+				<!-- ===== Change Password Form ===== -->
+				<section class="form-section">
+					<h2>Change Password</h2>
+					<p class="form-hint">
+						To change your current password, enter a new one below.<br>
+						<strong>Password must be at least 12 characters</strong> and include at least one capital letter,
+						one number, and one special character.
+					</p>
+				
+					<form action="/account/update-password" method="post" class="form-group" novalidate>
+						<input type="hidden" name="account_id" value="<%= accountData ? accountData.account_id : '' %>">
+
+						<label for="password">New Password:</label>
+						<input type="password" id="password" name="account_password" required
+							pattern="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{12,}$"
+							placeholder="Enter new password">
+				
+						<button type="submit">Change Password</button>
+					</form>
+				</section>
+</main>

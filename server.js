@@ -18,15 +18,14 @@ const app = express()
 const cookieParser = require("cookie-parser")
 
 
-// Route files
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
 const errorRoute = require("./routes/errorRoute")
 
-// Controllers and utilities
 const baseController = require("./controllers/baseController")
 const utilities = require("./utilities/")
+const checkJWTToken = require("./utilities/checkJWTToken")
 
 /* ***********************
  * Session Configuration
@@ -132,6 +131,7 @@ app.use(async (err, req, res, next) => {
 
 app.use(cookieParser())
 
+app.use(checkJWTToken)
 
 /* ***********************
  * Server Initialization

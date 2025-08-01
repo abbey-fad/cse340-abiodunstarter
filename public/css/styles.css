@@ -762,3 +762,65 @@ button[type="submit"]:hover {
 #inventoryDisplay tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+
+.form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 0.5rem;
+}
+
+.form-section {
+  margin-bottom: 2.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+.flash-message {
+  background-color: #e0f7fa;
+  color: #00796b;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.error-list {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 0.75rem;
+  border-radius: 4px;
+  list-style-type: none;
+}
+
+.form-hint {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}

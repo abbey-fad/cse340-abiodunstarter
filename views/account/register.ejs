@@ -1,58 +1,35 @@
-<div class="register-wrapper">
-	<h1>
-		<%= title %>
-	</h1>
+<div class="account-management">
+	<h1>Account Management</h1>
 
 	<% if (notice && notice.length> 0) { %>
 		<div class="flash-message">
-			<%= notice[0] %>
+			<%= notice %>
 		</div>
 		<% } %>
 
-	<% if (errors) { %>
-		<ul class="notice">
-			<% errors.array().forEach(error=> { %>
-				<li>
-					<%= error.msg %>
-				</li>
-				<% }) %>
-		</ul>
-		<% } %>                  
-	<p>All fields are required.</p>
-	<form id="registerForm" action="/account/register" method="post">
-		<fieldset>
-			<label for="account_firstname">First name:</label>
-			<input type="text" name="account_firstname" id="accountFirstname" required
-			    value="<%= locals.account_firstname %>">
-	
-			<label for="account_lastname">Last name:</label>
-			<input type="text" name="account_lastname" id="accountLastname" required
-				value="<%= locals.account_lastname %>">
-	
-			<label for="account_email">Email:</label>
-			<input type="email" name="account_email" id="accountEmail" required
-				value="<%= locals.account_email %>">
-	
-			<label for="account_password">Password:</label>
-			<input type="password" name="account_password" id="account_password" required
-				pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
-	        
-				<button type="button" onclick="togglePassword()">👁️ Show</button>
+			<% if (errors && errors.length> 0) { %>
+				<ul class="error-list">
+					<% errors.forEach(error=> { %>
+						<li>
+							<%= error.msg %>
+						</li>
+						<% }) %>
+				</ul>
+			<% } %>
 
-			<div class="password-hint">
-				<span>Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1
-					special character.</span>
-			</div>
-	
-			<button type="submit">Register</button>
-		</fieldset>
-	</form>
-	
+					<% if (accountData) { %>
+						<% if (accountData.account_type==="Client" ) { %>
+							<h2>Welcome Basic, <%= accountData.account_firstname %></h2>
+							<p><a href="/account/update/<%= accountData.account_id %>">Update Account Information</a></p>
+							
+							<% } else if ( accountData.account_type==="Employee" || accountData.account_type==="Admin" ) 
+							{ %>
+								<h2>Welcome Happy, <%= accountData.account_firstname %> </h2>
+								<p><a href="/account/update/<%= accountData.account_id %>">Update AccountInformation</a></p>
+								<h3>Inventory Management</h3>
+								<p><a href="/inv/">Go to Inventory Management</a></p>
+							<% } %>
+						<% } %>
+
+						<p>You're logged in.</p>
 </div>
-
-<script>
-	function togglePassword() {
-		const pwd = document.getElementById("account_password");
-		pwd.type = pwd.type === "password" ? "text" : "password";
-	}
-</script>
