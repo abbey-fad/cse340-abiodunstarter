@@ -18,7 +18,6 @@ async function inboxView(req, res) {
     inbox,
     unreadCount,
     archivedCount,
-    notice: req.flash("notice")
   })
 }
 
@@ -34,7 +33,6 @@ async function archiveView(req, res) {
     title: "Archived Messages",
     nav,
     archive,
-    notice: req.flash("notice")
   })
 }
 
@@ -55,7 +53,6 @@ async function messageDetail(req, res) {
     title: "Message Details",
     nav,
     message,
-    notice: req.flash("notice")
   })
 }
 
