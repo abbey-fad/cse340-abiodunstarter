@@ -1,4 +1,4 @@
-/* ****************************************** 
+/****************************************** 
  * This server.js file is the primary file of the 
  * application. It is used to control the project.
  *******************************************/
@@ -14,14 +14,15 @@ const bodyParser = require("body-parser")
 const flash = require("connect-flash")
 const env = require("dotenv").config()
 const pool = require("./database/")
-const app = express()
 const cookieParser = require("cookie-parser")
 
+const app = express()
 
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
 const errorRoute = require("./routes/errorRoute")
+const messageRoute = require("./routes/messageRoute")
 
 const baseController = require("./controllers/baseController")
 const utilities = require("./utilities/")
@@ -52,33 +53,25 @@ app.use(session({
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// Static routing
+// Static files
 app.use(express.static("public"))
 
-// Flash messaging
+// Flash messages
 app.use(flash())
 
-//Login activity
+// Cookie parser and JWT check
 app.use(cookieParser())
-//Login Process activity
 app.use(utilities.checkJWTToken)
 
-//Setup express-messages for EJS templates
-//const messages = require("express-messages")
-//app.use((req, res, next) => {
- //res.locals.messages = messages(req, res)
-  //next()
-//})
-
-// Make flash messages and user info available in all views
+// Inject nav and flash into views
 app.use(async (req, res, next) => {
   res.locals.notice = req.flash("notice")
-  console.log("Flash message:", res.locals.notice)
+  if (process.env.NODE_ENV !== "production") {
+    console.log("Flash message:", res.locals.notice)
+  }
   res.locals.nav = await utilities.getNav()
   next()
 })
-
-
 
 /* ***********************
  * View Engine and Layouts
@@ -96,16 +89,19 @@ app.use(static)
 // Base route
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
-// Inventory management
+// Inventory routes
 app.use("/inv", inventoryRoute)
 
-// Account handling
+// Account routes
 app.use("/account", accountRoute)
 
-// Intentional error route
+// Message routes
+app.use("/messages", messageRoute)
+
+// Error route
 app.use("/error", errorRoute)
 
-// 404 handler (must be last)
+// 404 Handler
 app.use(async (req, res, next) => {
   next({ status: 404, message: "Sorry, we appear to have lost that page." })
 })
@@ -128,10 +124,6 @@ app.use(async (err, req, res, next) => {
     nav,
   })
 })
-
-app.use(cookieParser())
-
-app.use(checkJWTToken)
 
 /* ***********************
  * Server Initialization

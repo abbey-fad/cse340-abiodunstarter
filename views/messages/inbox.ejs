@@ -1,0 +1,47 @@
+<h1>
+	<%= title %>
+</h1>
+
+<% if (notice && notice.length> 0) { %>
+	<div class="flash-message">
+		<%= notice[0] %>
+	</div>
+<% } %>
+
+<div class="message-controls">
+	<a href="/messages/compose" class="button">Compose</a>
+	<a href="/messages/archive" class="button">Archived (<%= archivedCount %>)</a>
+	<span class="unread-count">Unread Messages: <%= unreadCount %></span>
+</div>
+
+<% if (inbox.length===0) { %>
+	<p>No messages found in your inbox.</p>
+<% } else { %>
+	<table class="message-table">
+		<thead>
+			<tr>
+				<th>Status</th>
+				<th>Subject</th>
+				<th>From</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% inbox.forEach(msg=> { %>
+				<tr class="<%= msg.message_read ? '' : 'unread' %>">
+					<td>
+						<%= msg.message_read ? 'Read' : 'Unread' %>
+					</td>
+					<td><a href="/messages/message/<%= msg.message_id %>"><%= msg.message_subject %></a>
+					</td>
+					<td>
+						<%= msg.sender_name %>
+					</td>
+					<td>
+						<%= new Date(msg.message_created).toLocaleString() %>
+					</td>
+				</tr>
+			<% }) %>
+		</tbody>
+	</table>
+<% } %>

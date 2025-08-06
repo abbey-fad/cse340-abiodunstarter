@@ -429,18 +429,87 @@ button[type="submit"]:hover {
 
 /* ========== Login View ========== */
 .login-wrapper {
-  background-color: #f0f8ff;
+  max-width: 400px;
+  margin: 2rem auto;
   padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
 }
 
 .login-wrapper h1 {
   text-align: center;
-  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.flash-message {
+  background-color: #e0ffe0;
+  padding: 1rem;
+  border: 1px solid #0c0;
+  color: #060;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+.notice {
+  color: red;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+#loginForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#loginForm label {
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+#loginForm input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#loginForm button[type="submit"] {
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#loginForm button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.password-hint {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 0.5rem;
 }
 
 .signup-link {
   text-align: center;
   margin-top: 1rem;
+}
+
+.signup-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
 }
 
 /* ===== Shared Wrapper for Both Forms ===== */
@@ -804,23 +873,164 @@ button:hover {
 }
 
 .flash-message {
-  background-color: #e0f7fa;
-  color: #00796b;
-  padding: 0.75rem;
-  border-radius: 4px;
+  background-color: #e0ffe0;
+  padding: 10px;
+  border-left: 4px solid #2e8b57;
   margin-bottom: 1rem;
 }
 
-.error-list {
-  background-color: #ffebee;
-  color: #c62828;
-  padding: 0.75rem;
-  border-radius: 4px;
-  list-style-type: none;
+.inbox-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
 }
 
-.form-hint {
-  font-size: 0.9rem;
-  color: #666;
+.inbox-table th,
+.inbox-table td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.read {
+  background-color: #f9f9f9;
+}
+
+.unread {
+  background-color: #fffbea;
+  font-weight: bold;
+}
+
+.badge.read {
+  background-color: gray;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.badge.unread {
+  background-color: crimson;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #2e8b57;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.compose-message form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.compose-message label {
+  font-weight: bold;
+}
+
+.compose-message input,
+.compose-message select,
+.compose-message textarea {
+  padding: 8px;
+  font-size: 1rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.error-box {
+  background-color: #ffe6e6;
+  border-left: 4px solid crimson;
+  padding: 10px;
   margin-bottom: 1rem;
+  color: #900;
+}
+
+button[type="submit"] {
+  background-color: #2e8b57;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #276b45;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: #999;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.message-detail-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.message-detail p {
+  margin: 0.5rem 0;
+}
+
+.message-body {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-left: 4px solid #2e8b57;
+  white-space: pre-wrap;
+}
+
+.message-actions {
+  margin-top: 1rem;
+}
+
+.message-actions button {
+  background-color: #b22222;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.message-actions button:hover {
+  background-color: #8b0000;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: #999;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.flash-message.success {
+  background-color: #e6ffed;
+  color: #256029;
+  border-color: #a4d4ae;
+}
+
+.flash-message.error {
+  background-color: #ffe6e6;
+  color: #a10000;
+  border-color: #f5b7b7;
 }

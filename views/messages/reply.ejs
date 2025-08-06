@@ -1,0 +1,32 @@
+<h1>
+	<%= title %>
+</h1>
+
+<% if (notice && notice.length> 0) { %>
+	<div class="flash-message">
+		<%= notice[0] %>
+	</div>
+	<% } %>
+
+		<form action="/messages/reply/<%= message_id %>" method="POST" class="message-form">
+			<p><strong>Replying to:</strong>
+				<%= recipient_name %>
+			</p>
+			<p><strong>Original Subject:</strong>
+				<%= original_subject %>
+			</p>
+			<blockquote>
+				<%= original_body %>
+			</blockquote>
+
+			<input type="hidden" name="message_to" value="<%= recipient_id %>">
+
+			<label for="message_subject">Subject</label>
+			<input type="text" id="message_subject" name="message_subject" required
+				value="<%= message_subject || '' %>">
+
+			<label for="message_body">Message</label>
+			<textarea id="message_body" name="message_body" rows="6" required><%= message_body || '' %></textarea>
+
+			<button type="submit">Send Reply</button>
+		</form>

@@ -1,0 +1,26 @@
+<h1>
+	<%= title %>
+</h1>
+
+<% if (notice && notice.length> 0) { %>
+	<div class="flash-message">
+		<%= notice[0] %>
+	</div>
+	<% } %>
+
+		<% if (archive && archive.length> 0) { %>
+			<ul class="message-list">
+				<% archive.forEach(msg=> { %>
+					<li class="message-item <%= msg.message_read ? '' : 'unread' %>">
+						<a href="/messages/message/<%= msg.message_id %>">
+							<strong>
+								<%= msg.message_subject %>
+							</strong> from <%= msg.sender_name %> on
+								<%= new Date(msg.message_created).toLocaleString() %>
+						</a>
+					</li>
+					<% }) %>
+			</ul>
+			<% } else { %>
+				<p>You have no archived messages.</p>
+				<% } %>

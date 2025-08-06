@@ -1,47 +1,41 @@
-<div class="login-wrapper">
-	<h1>
-		<%= title %>
-	</h1>
+<main class="login-wrapper">
+	<h1><%= title %></h1>
 
-	<% if (notice && notice.length> 0) { %>
+	<% if (notice && notice.length > 0) { %>
 		<div class="flash-message">
 			<%= notice[0] %>
 		</div>
-		<% } %>
+	<% } %>
 
-			<% if (typeof errors !=='undefined' && errors) { %>
-				<ul class="notice">
-					<% errors.array().forEach(error=> { %>
-						<li>
-							<%= error.msg %>
-						</li>
-						<% }) %>
-				</ul>
-				<% } %>
+	<% if (typeof errors !== 'undefined' && errors) { %>
+		<ul class="notice">
+			<% errors.array().forEach(error => { %>
+				<li><%= error.msg %></li>
+			<% }) %>
+		</ul>
+	<% } %>
 
-					<form id="loginForm" action="/account/login" method="post">
-						<label for="account_email">Email:</label>
-						<input type="email" id="account_email" name="account_email" required
-							placeholder="Enter your email" value="<%= locals.account_email %>">
+	<form id="loginForm" action="/account/login" method="post">
+		<label for="account_email">Email:</label>
+		<input type="email" id="account_email" name="account_email" required
+			placeholder="Enter your email" value="<%= locals.account_email %>">
 
-						<label for="account_password">Password:</label>
-						<input type="password" id="account_password" name="account_password" required
-							pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
-							placeholder="Enter your password">
+		<label for="account_password">Password:</label>
+		<input type="password" id="account_password" name="account_password" required
+			pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+			placeholder="Enter your password">
 
-						<button type="button" onclick="togglePassword()">👁️ Show</button>
+		<button type="button" onclick="togglePassword()">👁️ Show</button>
 
-						<div class="password-hint">
-							<i>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter,
-								and 1
-								special character.</i>
-						</div>
+		<div class="password-hint">
+			<i>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter, and 1 special character.</i>
+		</div>
 
-						<button type="submit">Login</button>
-					</form>
+		<button type="submit">Login</button>
+	</form>
 
-					<p class="signup-link">No account? <a href="/account/register">Sign-up</a></p>
-</div>
+	<p class="signup-link">No account? <a href="/account/register">Sign-up</a></p>
+</main>
 
 <script>
 	function togglePassword() {

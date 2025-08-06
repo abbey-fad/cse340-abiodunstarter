@@ -83,4 +83,38 @@ async function updatePassword(account_id, hashedPassword) {
   }
 }
 
-module.exports = { registerAccount,  checkExistingEmail, getAccountByEmail, getAccountById, updateAccountInfo,   updatePassword }
+/* *****************************
+* Get list of all accounts (for message dropdown)
+* ***************************** */
+async function getAllAccounts() {
+  try {
+    const sql = "SELECT account_id, account_firstname, account_lastname, account_email FROM account ORDER BY account_firstname"
+    const result = await pool.query(sql)
+    return result.rows
+  } catch (error) {
+    console.error("getAllAccounts error:", error)
+    return []
+  }
+}
+
+/* *****************************
+* Get all accounts except current user (for message dropdown)
+* ***************************** */
+async function getAllAccountsExcept(accountId) {
+  try {
+    const sql = `
+      SELECT account_id, account_firstname, account_lastname
+      FROM account
+      WHERE account_id != $1
+      ORDER BY account_firstname
+    `
+    const result = await pool.query(sql, [accountId])
+    return result.rows
+  } catch (error) {
+    console.error("getAllAccountsExcept error:", error)
+    return []
+  }
+}
+
+
+module.exports = { registerAccount,  checkExistingEmail, getAccountByEmail, getAccountById, updateAccountInfo, updatePassword,  getAllAccounts, getAllAccountsExcept }
